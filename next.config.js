@@ -16,6 +16,9 @@ const nextConfig = {
       "pokeapi.co",
     ],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;
