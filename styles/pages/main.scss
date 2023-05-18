@@ -1,0 +1,336 @@
+@use "../util" as *;
+
+main {
+  position: relative;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  perspective: rem(1);
+
+  .hero {
+    transform: translateZ(-3px) scale(4);
+    position: sticky;
+    transform-style: flat;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    overflow: hidden;
+    z-index: -10;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .vector1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -999;
+      width: 70%;
+      height: 60%;
+
+      @include breakpoint(large) {
+        top: -7%;
+        left: -20%;
+        width: 90%;
+        height: 90%;
+      }
+    }
+
+    .vector2 {
+      position: absolute;
+      left: -5%;
+      bottom: -5%;
+      z-index: -999;
+      width: 25%;
+      height: 25%;
+
+      @include breakpoint(large) {
+        left: -2%;
+        bottom: -2%;
+        width: 35%;
+        height: 35%;
+      }
+
+      &__img {
+        width: fit-content;
+      }
+    }
+
+    .picture {
+      position: absolute;
+      top: 40%;
+      right: 0;
+      transform: translateY(-40%);
+      z-index: -99;
+      width: rem(287);
+
+      @include breakpoint(large) {
+        width: rem(550);
+      }
+    }
+
+    .container {
+      padding-top: rem(100);
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+
+      h2 {
+        margin: rem(10) 0;
+        width: 19ch;
+        border-right: rem(2) solid;
+        white-space: nowrap;
+        overflow: hidden;
+        animation: typing 3s steps(26, end),
+          cursor-blink 0.3s step-end infinite alternate;
+
+        @include breakpoint(large) {
+          margin: rem(20) 0;
+        }
+      }
+
+      h1 {
+        color: transparent;
+        font-weight: 400;
+        -webkit-text-stroke: rem(1) var(--white-text);
+        opacity: 0;
+
+        width: 13.5ch;
+        border-right: rem(2) solid var(--white-text);
+        white-space: nowrap;
+        overflow: hidden;
+        animation: typing 3s steps(26, end), hidden 1s,
+          cursor-blink 0.3s step-end infinite alternate;
+        animation-delay: 3s;
+        animation-fill-mode: forwards;
+      }
+
+      p {
+        margin-top: auto;
+        padding-bottom: rem(160);
+
+        @include breakpoint(medium) {
+          padding-bottom: rem(100);
+          max-width: 40%;
+        }
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+      }
+
+      @keyframes hidden {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes cursor-blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+    }
+  }
+
+  .parallax {
+    background-color: var(--black);
+    z-index: 99;
+    padding: rem(50) 0;
+    position: relative;
+
+    .container {
+      background-image: url("../../public/Rectangle\ 1464.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100%;
+      padding: rem(20);
+
+      .slider {
+        width: rem(160);
+        height: rem(320);
+        position: absolute;
+        top: 30%;
+        right: 0;
+        transform: translateY(-30%);
+        overflow: hidden;
+
+        @include breakpoint(large) {
+          width: rem(250);
+          height: rem(500);
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        &__circle-small {
+          width: rem(130);
+          height: rem(130);
+          border-radius: 100%;
+          background: linear-gradient(
+            90.57deg,
+            #272727 0.53%,
+            rgba(39, 39, 39, 0.2) 50.04%
+          );
+          filter: blur(rem(1));
+          position: absolute;
+          top: 50%;
+          right: -50%;
+          transform: translateY(-50%);
+
+          @include breakpoint(large) {
+            width: rem(230);
+            height: rem(230);
+          }
+        }
+
+        &__circle-big {
+          width: rem(320);
+          height: rem(320);
+          border-radius: 100%;
+          border: rem(2) solid var(--white);
+
+          @include breakpoint(large) {
+            width: rem(500);
+            height: rem(500);
+          }
+
+          ul {
+            position: absolute;
+            top: 50%;
+            left: rem(20);
+            transform: translateY(-50%);
+            color: var(--white-text);
+            display: flex;
+            flex-direction: column;
+            gap: rem(25);
+
+            @include breakpoint(large) {
+              gap: rem(45);
+            }
+
+            .active {
+              font-weight: 700;
+              color: var(--white-text);
+            }
+
+            li {
+              color: #a6a8ac;
+              font-weight: 400;
+              cursor: pointer;
+            }
+
+            li:nth-child(odd) {
+              margin-left: rem(40);
+
+              @include breakpoint(large) {
+                margin-left: rem(70);
+              }
+            }
+          }
+        }
+      }
+
+      .article {
+        display: none;
+        flex-direction: column;
+        height: 100%;
+
+        @include breakpoint(medium) {
+          padding: rem(40);
+          flex-direction: row;
+          gap: rem(100);
+        }
+        .article-info {
+          @include breakpoint(medium) {
+            width: 40%;
+          }
+
+          h3 {
+            @include breakpoint(medium) {
+              margin-bottom: rem(30);
+              font-size: 1.9rem;
+            }
+          }
+
+          h3 {
+            @include breakpoint(large) {
+              font-size: 2.2rem;
+            }
+          }
+
+          .article-image {
+            margin-top: rem(20);
+            width: 60%;
+            border-radius: rem(4);
+            filter: drop-shadow(0px 2px 20px rgba(255, 255, 255, 0.25));
+
+            @include breakpoint(medium) {
+              margin-top: rem(30);
+              width: 100%;
+            }
+          }
+        }
+
+        .article-author {
+          margin-top: auto;
+          display: flex;
+          flex-direction: column;
+
+          @include breakpoint(medium) {
+            width: 40%;
+            margin: auto 0;
+          }
+          p {
+            font-size: rem(12);
+
+            @include breakpoint(large) {
+              padding: rem(30) 0;
+              width: 80%;
+              font-size: rem(16);
+              line-height: rem(20);
+            }
+          }
+
+          .see-more {
+            margin-top: rem(20);
+            display: flex;
+            gap: rem(10);
+            align-items: center;
+            align-self: flex-start;
+
+            &__circle {
+              width: rem(30);
+              height: rem(30);
+              background-color: var(--white-text);
+              border-radius: 100%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+
+              svg {
+                color: #272727;
+              }
+            }
+
+            div {
+              color: var(--white-text);
+              font-weight: 500;
+            }
+          }
+        }
+      }
+
+      .active {
+        display: flex;
+      }
+    }
+  }
+}

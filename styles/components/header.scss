@@ -1,0 +1,11 @@
+@use "../util" as *;
+
+header {
+  position: relative;
+  width: 100%;
+  padding: rem(20) 0;
+
+  img {
+    width: rem(60);
+  }
+}
