@@ -14,6 +14,7 @@ const nextConfig = {
       "media.wired.com",
       "cdn.vox-cdn.com",
       "pokeapi.co",
+      "i.guim.co.uk",
     ],
   },
   eslint: {

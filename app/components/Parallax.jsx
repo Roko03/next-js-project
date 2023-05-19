@@ -1,10 +1,12 @@
-"use client"
+"use client";
+
 import { useState } from "react";
 import Article from "./Article";
 
-export default function Parallax({data}) {
-  const [slide,setSlide] = useState(1);
+export default function Parallax({ data }) {
+  const [slide, setSlide] = useState(1);
 
+  //mici console logove, nebi bilo lipo da ostanu u prod appu
   console.log(data);
 
   return (
@@ -14,31 +16,33 @@ export default function Parallax({data}) {
           <div className="slider__circle-small"></div>
           <div className="slider__circle-big">
             <ul>
-              {
-                data.articles.map((el,index) =>{
-                  return (
-                    <li className={slide == (index + 1) ? 'active' : ''} onClick={() => setSlide(index + 1)} key={index}>Article {index + 1}</li>
-                  )
-                })
-              }
+              {data.articles.map((el, index) => {
+                return (
+                  <li
+                    className={slide == index + 1 ? "active" : ""}
+                    onClick={() => setSlide(index + 1)}
+                    key={index}
+                  >
+                    Article {index + 1}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
-        {
-            data.articles.map((news,index) => {
-                return (
-                    <Article 
-                        key={index}
-                        id={index}
-                        title={news.title} 
-                        urlToImage={news.urlToImage} 
-                        author={news.author} 
-                        content={news.content}
-                        isActive={slide == (index + 1) ? true : false}
-                    />
-                )
-            })
-        }
+        {data.articles.map((news, index) => {
+          return (
+            <Article
+              key={index}
+              id={index}
+              title={news.title}
+              urlToImage={news.urlToImage}
+              author={news.author}
+              content={news.content}
+              isActive={slide == index + 1 ? true : false}
+            />
+          );
+        })}
       </div>
     </section>
   );
