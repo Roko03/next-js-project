@@ -7,7 +7,7 @@ export async function generateStaticParams(){
     const data = await response.json();
 
     return data.articles.map((news) => ({
-        news: toString(news.title)
+        news: news.title
     }))
 }
 
