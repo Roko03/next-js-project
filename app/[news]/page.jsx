@@ -22,18 +22,24 @@ export default async function NewsDetails({params}){
         <>
             <main>
                 <Header/>
-                <div className="container">
-                    <div className="article">
-                        <div className="article-info">
-                            <h3>{data.articles[0].title}</h3>
-                            <Image src={data.articles[0].urlToImage} alt="Image" width={300} height={300}/>
-                        </div>
-                        <div className="article-author">
-                            <h4>{data.articles[0].author}</h4>
-                            <p>{data.articles[0].content}</p>
-                        </div>  
-                    </div>
-                </div>
+                {
+                    data.articles.map((news) => {
+                        return (
+                            <div className="container">
+                                <div className="article">
+                                    <div className="article-info">
+                                        <h3>{news.title}</h3>
+                                        <Image src={news.urlToImage} alt="Image" width={300} height={300}/>
+                                    </div>
+                                    <div className="article-author">
+                                        <h4>{news.author}</h4>
+                                        <p>{news.content}</p>
+                                    </div>  
+                                </div>
+                            </div>
+                        )
+                    })
+                }
             </main>
         </>
     )
